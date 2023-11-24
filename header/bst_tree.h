@@ -26,11 +26,12 @@ class BinarySearchTree {
   void minimum(int item);
   void maximum(int item);
   NodePtr<T> getRoot();
-  void Insert_helper(int item);
-  NodePtr<T> insert(NodePtr<T> node, int item);
+  virtual NodePtr<T> recursiveInsert(NodePtr<T> node, int item);
+  void Insert(int item);
+  int getHeight(NodePtr<T> current_node);
   // + Implementation required...
 
- private:
+ protected:
   // pointer of root node
   NodePtr<T> root_;
   // total size of BST

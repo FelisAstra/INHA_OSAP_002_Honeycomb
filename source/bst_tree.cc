@@ -80,30 +80,38 @@ NodePtr<T> BinarySearchTree<T>::getRoot() {
   return this->root_;
 }
 
+/* insert helper function to use in main.cc*/
+template <typename T>
+void BinarySearchTree<T>::Insert(int item) {
+  if (IsKey(item)) {
+    cout << item << " is already exists\n";
+    return;
+  }
+  this->root_ = recursiveInsert(this->root_, item);
+  this->size_ = this->size_ + 1;
+  return;
+}
+
 /* insert a node in bst tree*/
 template <typename T>
-NodePtr<T> BinarySearchTree<T>::insert(NodePtr<T> node, int item) {
+NodePtr<T> BinarySearchTree<T>::recursiveInsert(NodePtr<T> node, int item) {
   if (node == nullptr) {
     NodePtr<T> z = new Node<T>;
     z->key = item;
     node = z;
     return node;
   } else if (node->key < item) {
-    node->right = insert(node->right, item);
+    node->right = recursiveInsert(node->right, item);
   } else {
-    node->left = insert(node->left, item);
+    node->left = recursiveInsert(node->left, item);
   }
   return node;
 }
 
-/* insert helper function to use in main.cc*/
 template <typename T>
-void BinarySearchTree<T>::Insert_helper(int item) {
-  if (IsKey(item)) {
-    cout << item << " is already exists\n";
-    return;
-  }
-  this->root_ = insert(this->root_, item);
-  this->size_ = this->size_ + 1;
-  return;
+int BinarySearchTree<T>::getHeight(NodePtr<T> current_node) {
+  if (current_node == nullptr)
+    return 0;
+  else
+    return current_node->height;
 }
