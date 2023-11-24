@@ -1,11 +1,11 @@
 ﻿#include "../header/bst_tree.h"
+#include "../source/bst_tree.cc"
 #include <gtest/gtest.h>
 #include <iostream>
 using namespace testing;
 using namespace std;
 
 // Fixture Class
-template <typename T>
 class BinarySearchTreeTest : public Test {
  public:
   BinarySearchTreeTest();
@@ -14,29 +14,35 @@ class BinarySearchTreeTest : public Test {
   void TearDown() override;
 
  protected:
-  BinarySearchTree<T> bst_;  // BST obj member
+  BinarySearchTree<int> bst_;  // BST obj member
 };
 
 /* Constructor */
-template <typename T>
-BinarySearchTreeTest<T>::BinarySearchTreeTest() {
+BinarySearchTreeTest::BinarySearchTreeTest() {
   cout << "Constructor called\n";
 }
 
 /* Destructor */
-template <typename T>
-BinarySearchTreeTest<T>::~BinarySearchTreeTest() {
+BinarySearchTreeTest::~BinarySearchTreeTest() {
   cout << "Destructor called\n";
 }
 
 /* SetUp */
-template <typename T>
-void BinarySearchTreeTest<T>::SetUp() {
+void BinarySearchTreeTest::SetUp() {
+  bst_.insert(bst_.getRoot(), 1);
   cout << "SetUp called\n";
 }
 
 /* TearDown */
-template <typename T>
-void BinarySearchTreeTest<T>::TearDown() {
+void BinarySearchTreeTest::TearDown() {
   cout << "TearDown called\n";
+}
+
+TEST_F(BinarySearchTreeTest, TestGetRoot) {
+  EXPECT_EQ(2 * 4, 8); // 테스트 체크용
+}
+
+int main(int argc, char** argv) {
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }
