@@ -1,7 +1,7 @@
 ﻿#include "../header/bst_tree.h"
-#include "../source/bst_tree.cc"
 #include <gtest/gtest.h>
 #include <iostream>
+#include "../source/bst_tree.cc"
 using namespace testing;
 using namespace std;
 
@@ -39,7 +39,7 @@ void BinarySearchTreeTest::TearDown() {
 }
 
 TEST_F(BinarySearchTreeTest, TestGetRoot) {
-  EXPECT_EQ(2 * 4, 8); // 테스트 체크용
+  EXPECT_EQ(2 * 4, 8);  // 테스트 체크용
 }
 
 int main(int argc, char** argv) {
